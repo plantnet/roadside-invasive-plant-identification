@@ -1,0 +1,6 @@
+{
+    "pipelines"  : "../1_pipelines/",
+    "parameters" : "../2_parameters/",
+    "scripts"    : "../3_scripts/",
+    "logs"       : "../4_logs/"
+}

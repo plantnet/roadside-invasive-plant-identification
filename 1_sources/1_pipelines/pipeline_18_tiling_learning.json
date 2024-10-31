@@ -1,0 +1,121 @@
+{
+    "name": "pipeline de calcul des predictions",
+    
+    "modules": [
+
+                { "name"                  : "module_get_device",
+                  "device_name"           : "param_storage_device_name",
+                  "output"                : "data_storage_device"},
+
+                { "name"                  : "module_get_device",
+                  "device_name"           : "param_compute_device_name",
+                  "output"                : "data_compute_device"},
+
+
+                {"__comment"                             : "Construction du modèle"},
+              
+                { "name"                                 : "module_include",
+                  "pipeline"                             : "internal_bloc_14_load_base_aggregation_model.json",
+                  
+                  "f_model_head_path_in"                 : "param_model_f_model_head_path_in",
+
+                  "device"                               : "data_compute_device",
+                  "aggregation_type"                     : "param_model_aggregation_type",
+                  "n_views"                              : "param_model_n_views",
+                  "n_model_views"                        : "param_model_n_model_views",
+                  "n_features"                           : "param_model_n_features",
+                  "n_species"                            : "param_model_n_species",
+                  "p_dropout"                            : "param_model_p_dropout",
+
+                  "bool_argmax"                          : "param_model_bool_argmax",
+                  "bool_layer_norm"                      : "param_model_bool_layer_norm",
+                  "bool_max_add_softmax_layer"           : "param_model_bool_max_add_softmax_layer",
+                  "bool_max_linear_avant_max"            : "param_model_bool_max_linear_avant_max",
+                  "bool_final_sigmoid"                   : "param_model_bool_final_sigmoid",
+                  "bool_attention_feed_forward"          : "param_model_bool_attention_feed_forward",
+
+                  "output"                               : ["data_model", "param_model_infos"]},
+                  
+                                  
+                        { "name"                          : "module_include",
+                        "pipeline"                        : "internal_bloc_16_get_dataset_dataloader_imagefolder.json",
+
+                        "model_infos"                     : "param_model_infos",
+                        "create_augment_specs"            : "param_create_augment_specs",       
+
+                        "dataset_folder"                  : "param_train_set_folder",
+                        "storage_device"                  : "data_storage_device",
+                        "bool_true_tensors_false_images"  : "param_ds_common_bool_true_tensors_false_images",
+                        "bool_caching_images"             : "param_ds_common_bool_caching_images",
+                        "bool_caching_labels"             : "param_ds_common_bool_caching_labels",
+                        "bool_return_relative_img_names"  : "param_ds_common_bool_return_relative_img_names",
+                        "bool_return_short_img_names"     : "param_ds_common_bool_return_short_img_names",
+                        "bool_one_hot_encoding"           : "param_ds_common_bool_one_hot_encoding",
+                        "bool_one_hot_remove_last_col"    : "param_ds_common_bool_one_hot_remove_last_col",
+                        
+
+                        "dataloader_batch_size"           : "param_ds_common_loader_batch_size",
+                        "dataloader_shuffle"              : "param_train_loader_shuffle",
+                        "dataloader_num_workers"          : "param_ds_common_loader_num_workers",
+                        "dataloader_pin_memory"           : "param_ds_common_loader_pin_memory",
+                        "output"                          : "data_train_loader"},                  
+
+
+
+                        { "name"                          : "module_include",
+                        "pipeline"                        : "internal_bloc_16_get_dataset_dataloader_imagefolder.json",
+
+                        "model_infos"                     : "param_model_infos",
+                        "create_augment_specs"            : "param_create_augment_specs",       
+
+                        "dataset_folder"                  : "param_val_set_folder",
+                        "storage_device"                  : "data_storage_device",
+                        "bool_true_tensors_false_images"  : "param_ds_common_bool_true_tensors_false_images",
+                        "bool_caching_images"             : "param_ds_common_bool_caching_images",
+                        "bool_caching_labels"             : "param_ds_common_bool_caching_labels",
+                        "bool_return_relative_img_names"  : "param_ds_common_bool_return_relative_img_names",
+                        "bool_return_short_img_names"     : "param_ds_common_bool_return_short_img_names",
+                        "bool_one_hot_encoding"           : "param_ds_common_bool_one_hot_encoding",
+                        "bool_one_hot_remove_last_col"    : "param_ds_common_bool_one_hot_remove_last_col",
+
+                        "dataloader_batch_size"           : "param_ds_common_loader_batch_size",
+                        "dataloader_shuffle"              : "param_val_loader_shuffle",
+                        "dataloader_num_workers"          : "param_ds_common_loader_num_workers",
+                        "dataloader_pin_memory"           : "param_ds_common_loader_pin_memory",
+                        "output"                          : "data_val_loader"},                  
+
+
+  
+                {"comment"               : "Effectue l'apprentissage"},
+  
+                { "name"                      : "module_perform_learning",
+                
+                  "model"                           : "data_model",
+                  "train_loader"                    : "data_train_loader",
+                  "val_loader"                      : "data_val_loader",
+                  "n_epochs"                        : "param_n_epochs",
+                
+                  "init_learning_rate"              : "param_init_learning_rate",
+                  "filename_model_weights_out"      : "param_trained_filename_model_weights_out",
+
+                  "early_stop_patience"             : "param_early_stop_patience",
+                  "reduce_lr_patience"              : "param_reduce_lr_patience",
+                  "early_stop_min_delta"            : "param_early_stop_min_delta",
+                  "reduce_lr_factor"                : "param_reduce_lr_factor",
+                  
+                  "label_smoothing_factor"          : "param_label_smoothing_factor",
+                  "weight_decay"                    : "param_weight_decay",
+                  "bool_use_BCE_loss"               : "param_bool_use_BCE_loss",
+                  
+                  "bool_use_tensorboard"            : "param_bool_use_tensorboard",
+                  "tensorflow_log_dir"              : "param_tensorflow_log_dir",
+                  "tf_train_xp_name"                : "param_tf_train_xp_name",
+                  "tf_val_xp_name"                  : "param_tf_val_xp_name"},
+
+
+                {"comment"               : "Standardise les poids du modèle"},
+                { "name"                            : "module_model_centrer_reduire_sans_biais",
+                "f_model_in"                        : "param_trained_filename_model_weights_out",
+                "f_model_out"                       : "param_trained_normalized_filename_model_weights_out"}
+    ]
+}

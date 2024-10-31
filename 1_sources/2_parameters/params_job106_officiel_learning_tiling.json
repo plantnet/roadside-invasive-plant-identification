@@ -1,0 +1,82 @@
+{
+    "include_params_default values"       : "params_job_tiling_vamis_default.json",
+    "include_params_model"                : "params_model_tiling_danish_926_vues_def.json",
+    "include_params_dataset"              : "params_dataset_deep_features_mads_split.json",
+    "params_for_paths_search"             : ["quadrats_folders", "quadrats_filenames", "/"],
+
+    "__comment"    : "Officiel - XP5 - Tiling: Learning the linear classifier (model head)",
+    "__comment2"   : "training with BinaryCrossEntropy + LayerNorm (logits in [-1, 1])",
+
+    "tag_sup"      : "test_3110",
+
+    "__sub_train_set_name"       : "mads_split_train",
+    "__sub_val_set_name"         : "mads_split_val",
+
+    "__comment3"                 : "For testing purpose",
+    "sub_train_set_name"       : "mads_split_val",
+    "__sub_train_set_name"       : "mads_split_test_14",
+    "sub_val_set_name"         : "mads_split_val_16",
+
+    "model_aggregation_type"               : "max",
+    "__comment"                            : "Special layer norm - not trained: To interpret logits as cosine similarity in [-1, 1]",
+    "model_bool_layer_norm"                : true,
+
+    "__comment"                            : "final_sigmoid because BCE loss requires logits between 0 and 1",
+    "model_bool_final_sigmoid"             : true,
+
+    "model_f_model_resume_in"   : "",
+    
+    "ds_common_bool_caching_labels"            : true,
+    "ds_common_bool_return_relative_img_names" : false,
+    "ds_common_bool_return_short_img_names"    : false,
+    "train_loader_shuffle"                     : true,
+    "val_loader_shuffle"                       : false,
+    "dataset_folder"                           : "",
+    "train_set_folder"                         : ["$f_deep_features", "$danish_subdataset_folders[$sub_train_set_name]"],
+    "val_set_folder"                           : ["$f_deep_features", "$danish_subdataset_folders[$sub_val_set_name]"],
+
+    "__comment"                                : "BCE requires one_hot_encoding",
+    "ds_common_bool_one_hot_encoding"          : true,
+    "ds_common_bool_one_hot_remove_last_col"   : true,
+    
+
+    "create_augment_specs" : { "identity" : true },
+    
+    "__n_epochs"         : 0,
+    "__n_epochs"         : 1,
+    "n_epochs"         : 5,
+    "__n_epochs"         : 1000,
+                
+    "init_learning_rate" : 0.02,
+    
+    "weight_decay"       : 0.0,
+    "__weight_decay"       : 0.001,
+    
+    "__p_dropout"          : 0.01,
+    "p_dropout"          : 0.02,
+    
+    "batch_size"         : "$ds_common_loader_batch_size",
+
+    "xp_param_string"                 : [ "wd=", "$weight_decay", "_do=", "$p_dropout", "_lr=", "$init_learning_rate", "_bs=", "$batch_size"],
+    "f_weight_short_name"             : [ "learning_xp5h_BCE_LN__", "$xp_param_string", "_", "$tag_sup", ".pth"],
+    "trained_filename_model_weights_out"            : [ "$f_models", "model_tiling_state_dict_", "$f_weight_short_name"],
+    "trained_normalized_filename_model_weights_out" : [ "$f_models", "model_tiling_state_dict_normalized_", "$f_weight_short_name"],
+
+    "early_stop_patience"             : 7,
+    "reduce_lr_patience"              : 3,
+    "early_stop_min_delta"            : 0.00001,
+    "reduce_lr_factor"                : 0.3,
+
+    "label_smoothing_factor"          : -1.0,
+    "bool_use_BCE_loss"               : true,
+                  
+    "bool_use_tensorboard"            : false,
+    "tensorflow_log_dir"              : "",
+    "tf_train_xp_name"                : "",
+    "tf_val_xp_name"                  : "",
+
+    "__use_autocast"      : false,
+    "__use_autocast"      : true,
+    "__use_torch_compile" : false,
+    "__use_torch_compile" : true    
+}

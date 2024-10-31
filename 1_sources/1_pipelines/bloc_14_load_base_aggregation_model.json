@@ -1,0 +1,33 @@
+{
+    "name": "Bloc de chargement d'un modèle custom pour aggrégation",
+
+    "__requires": "",
+    "__provides": "",
+    "output" : ["data_model", "param_model_infos"],
+    
+    "modules": [
+
+                { "name"                  : "module_load_torch_tensor",
+                "f_path"                  : "param_f_model_head_path_in",
+                "device"                  : "data_device",
+                "output"                  : "data_init_classif_linear"},
+
+                { "name"                  : "module_load_aggregation_model",
+                "aggregation_type"        : "param_aggregation_type",
+                "n_views"                 : "param_n_views",
+                "n_model_views"           : "param_n_model_views",
+                "n_features"              : "param_n_features",
+                "n_species"               : "param_n_species",
+                "p_dropout"               : "param_p_dropout",
+                "bool_argmax"             : "param_bool_argmax",
+                "bool_layer_norm"         : "param_bool_layer_norm",
+                "bool_max_add_softmax_layer"  : "param_bool_max_add_softmax_layer",
+                "bool_max_linear_avant_max"   : "param_bool_max_linear_avant_max",
+                "bool_final_sigmoid"          : "param_bool_final_sigmoid",
+                "bool_attention_feed_forward" : "param_bool_attention_feed_forward",
+                "init_classif_linear"     : "data_init_classif_linear",
+                "output"                  : ["data_model", "param_model_infos"]}
+
+        ]
+
+}

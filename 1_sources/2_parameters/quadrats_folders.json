@@ -1,0 +1,13 @@
+{
+    "quadrats_folders" : {
+        "f_images"                  : "../../0_datastore/10_images/",
+        "f_annotations"             : "../../0_datastore/11_annotations/",
+        "f_species_data"            : "../../0_datastore/12_species_data/",
+        "f_clusters"                : "../../0_datastore/13_clusters/",
+        "f_deep_features"           : "../../0_datastore/20_deep_features/",
+        "f_models"                  : "../../0_datastore/30_models/",
+        "f_probas_predictions_pth"  : "../../0_datastore/40_probas_predictions_pth/",
+        "f_probas_predictions_csv"  : "../../0_datastore/50_probas_predictions_csv/",
+        "f_output_statistiques"     : "../../0_datastore/70_output_statistiques/"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "params_surcharge_pipeline_repetition" : {
+        "run_1"  : {
+            "subdataset_name"         : "mads_split_val",
+            "input_seuils_detection"  : "max_j_youden",
+            "output_seuils_detection" : ["$tag_experiment", "_val"],
+            "use_autocast"      : true,
+            "use_torch_compile" : false
+            }
+    }
+}

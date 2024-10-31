@@ -1,0 +1,42 @@
+{
+    "include_params_default values"       : "params_job_tiling_vamis_default.json",
+    "include_params_model"                : "params_model_tiling_danish_926_vues_def.json",
+    "include_params_dataset"              : "params_dataset_deep_features_mads_split.json",
+    "params_for_paths_search"             : ["quadrats_folders", "quadrats_filenames", "/"],
+
+    "__comment"    : "Officiel - XP5 - Tiling finetuné: Inférence",
+    "__comment2"   : "trained with BinaryCrossEntropy + LayerNorm (logits in [-1, 1]) + pickup strategy",
+
+    "tag_experiment" : "xp5",
+    "tag_sup"      : "test_3110",
+
+    "__subdataset_name"         : "mads_split_train",
+    "__subdataset_name"         : "mads_split_val",
+    "subdataset_name"           : "mads_split_test",
+    "__subdataset_name"           : "mads_split_multilabel",
+    "__subdataset_name"           : "mads_split_test_q70",
+
+    "model_aggregation_type"               : "max",
+    "model_bool_layer_norm"                : true,
+    "model_bool_final_sigmoid"             : false,
+
+    "__input_seuils_detection" : "max_j_youden",
+    "__input_seuils_detection" : "max_f1_score",
+    "__input_seuils_detection" : "zero",
+    "input_seuils_detection" : ["$tag_experiment", "_val"],
+    "__input_seuils_detection" : ["$tag_experiment", "_val_learning_tiling_", "$tag_sup"],
+    
+    "output_seuils_detection" : "",
+    "__output_seuils_detection" : ["$tag_experiment", "_val"],
+    "__output_seuils_detection" : ["$tag_experiment", "_val_learning_tiling_", "$tag_sup"],
+    
+    "model_f_model_resume_in"   : [ "$f_models", "model_tiling_state_dict_xp5.pth"],
+    "__model_f_model_resume_in"   : [ "$f_models", "model_tiling_state_dict_normalized_learning_xp5h_BCE_LN__wd=0.0_do=0.02_lr=0.02_bs=256_test_3010.pth"],
+
+    "create_augment_specs" : { "identity" : true },
+
+    "__use_autocast"      : false,
+    "use_autocast"      : true,
+    "use_torch_compile" : false,
+    "__use_torch_compile" : true
+}

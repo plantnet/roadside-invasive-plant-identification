@@ -1,0 +1,42 @@
+{
+  "xp1_val": {
+    "Solidago": -1.3369141,
+    "Cytisus scoparius": -2.1914062,
+    "Rosa rugosa": -1.7822266,
+    "Lupinus polyphyllus": -3.2246094,
+    "Pastinaca sativa": -2.7714844,
+    "Reynoutria": -3.4570312
+  },
+  "xp2_val": {
+    "Solidago": -1.4355469,
+    "Cytisus scoparius": -2.0976562,
+    "Rosa rugosa": -2.0488281,
+    "Lupinus polyphyllus": -2.9375,
+    "Pastinaca sativa": -3.2363281,
+    "Reynoutria": -3.734375
+  },
+  "xp3_val": {
+    "Solidago": 2.5546875,
+    "Cytisus scoparius": 2.4492188,
+    "Rosa rugosa": 2.4121094,
+    "Lupinus polyphyllus": 2.7734375,
+    "Pastinaca sativa": 4.125,
+    "Reynoutria": 9.875
+  },
+    "xp4_val": {
+    "Solidago": 0.8129883,
+    "Cytisus scoparius": 0.68896484,
+    "Rosa rugosa": 0.7211914,
+    "Lupinus polyphyllus": 0.6870117,
+    "Pastinaca sativa": 0.7104492,
+    "Reynoutria": 0.9379883
+  },
+  "xp5_val": {
+    "Solidago": -0.004180908,
+    "Cytisus scoparius": -0.026321411,
+    "Rosa rugosa": -0.023269653,
+    "Lupinus polyphyllus": -0.015541077,
+    "Pastinaca sativa": -0.036987305,
+    "Reynoutria": -0.038330078
+  }
+}

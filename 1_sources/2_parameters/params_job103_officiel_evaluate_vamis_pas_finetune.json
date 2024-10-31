@@ -1,0 +1,41 @@
+{
+    "include_params_default values"       : "params_job_tiling_vamis_default.json",
+    "include_params_model"                : "params_model_beit_vamis_danish_echelle2.json",
+    "include_params_dataset"              : "params_dataset_images_mads_split.json",
+    "params_for_paths_search"             : ["quadrats_folders", "quadrats_filenames", "/"],
+
+    "__comment"    : "Officiel - XP3 - VaMIS pas finetuné (depuis PlantNet): Inférence",
+    "__comment2"   : "PlantNet model + VaMIS interpolation 768x1017",
+
+    "tag_experiment" : "xp3",
+    "tag_sup"      : "test_3110",
+
+    "__subdataset_name"           : "mads_split_train",
+    "__subdataset_name"           : "mads_split_val",
+    "subdataset_name"           : "mads_split_test",
+    "__subdataset_name"           : "mads_split_multilabel",
+    "__subdataset_name"           : "mads_split_test_14",
+
+    "model_input_size_xy_vamis" : [768, 1017],
+
+    "__input_seuils_detection" : "max_j_youden",
+    "__input_seuils_detection" : "max_f1_score",
+    "__input_seuils_detection" : "zero",
+    "input_seuils_detection" : ["$tag_experiment", "_val"],
+    
+    "output_seuils_detection" : "",
+    "__output_seuils_detection" : ["$tag_experiment", "_val"],
+    
+    "model_f_model_resume_in"   : "",
+
+    "create_augment_specs" : {
+        "totensor" : true,
+        "resize" : true,
+        "normalize" : true
+    },
+
+    "__use_autocast"      : false,
+    "use_autocast"      : true,
+    "use_torch_compile" : false,
+    "__use_torch_compile" : true
+}

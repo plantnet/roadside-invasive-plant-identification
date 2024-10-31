@@ -1,0 +1,63 @@
+{
+    "name": "pipeline pour le calcul des deep features",
+    
+    "modules": [
+
+        { "name"                  : "module_get_device",
+          "device_name"           : "param_storage_device_name",
+          "output"                : "data_storage_device"},
+
+        { "name"                  : "module_get_device",
+          "device_name"           : "param_compute_device_name",
+          "output"                : "data_compute_device"},
+
+          
+        {"__comment"                  : "Construction du modèle"},
+
+
+        { "name"                 : "module_load_model_timm",
+          "model_name"           : "param_model_name",
+          "models_infos"         : "param_models_infos",
+          "model_input_size_xy_vamis"  : "param_model_input_size_xy_vamis",
+          "d_models_folder"      : "param_d_models_folder",
+          "device"               : "data_compute_device",
+          "output"               : ["data_model", "param_model_infos"]},
+
+
+        {   "name"                          : "module_include",
+            "pipeline"                      : "internal_bloc_17_get_dataset_dataloader.json",
+
+            "model_infos"                     : "param_model_infos",
+            "create_augment_specs"            : "param_create_augment_specs",       
+
+            "dataset_folder"                  : "param_dataset_folder",
+            "storage_device"                  : "data_storage_device",
+
+            "bool_true_tensors_false_images"  : "param_ds_common_bool_true_tensors_false_images",
+            "bool_caching_images"             : "param_ds_common_bool_caching_images",
+            "bool_caching_labels"             : "param_ds_common_bool_caching_labels",
+            "bool_return_relative_img_names"  : "param_ds_common_bool_return_relative_img_names",
+            "bool_return_short_img_names"     : "param_ds_common_bool_return_short_img_names",
+
+            "dataloader_batch_size"           : "param_ds_common_loader_batch_size",
+            "dataloader_shuffle"              : "param_ds_data_loader_shuffle",
+            "dataloader_num_workers"          : "param_ds_common_loader_num_workers",
+            "dataloader_pin_memory"           : "param_ds_common_loader_pin_memory",
+
+            "output"                          : "data_dataloader"},
+
+
+          { "name"                        : "module_calcule_deep_features",
+            "model"                       : "data_model",
+            "model_infos"                 : "param_model_infos",
+            "dataloader"                  : "data_dataloader",
+            "views_geometry"              : "param_views_geometry",
+            "batch_size_views"            : "param_batch_size_views",
+            "output_deep_features_folder" : "param_output_deep_features_folder",
+            "use_autocast"                : "param_use_autocast",
+            "use_torch_compile"           : "param_use_torch_compile",
+            "device"                      : "data_compute_device"}
+
+        ]
+
+}

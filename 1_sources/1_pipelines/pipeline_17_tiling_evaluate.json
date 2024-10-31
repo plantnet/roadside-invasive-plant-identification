@@ -1,0 +1,89 @@
+{
+    "name": "pipeline de calcul des predictions",
+    
+    "modules": [
+
+                { "name"                  : "module_get_device",
+                  "device_name"           : "param_storage_device_name",
+                  "output"                : "data_storage_device"},
+
+                { "name"                  : "module_get_device",
+                  "device_name"           : "param_compute_device_name",
+                  "output"                : "data_compute_device"},
+
+
+                {"__comment"                             : "Construction du modèle"},
+              
+                { "name"                                 : "module_include",
+                  "pipeline"                             : "internal_bloc_15_load_custom_aggregation_model.json",
+                  
+                  "f_model_head_path_in"                 : "param_model_f_model_head_path_in",
+
+                  "device"                               : "data_compute_device",
+                  "aggregation_type"                     : "param_model_aggregation_type",
+                  "n_views"                              : "param_model_n_views",
+                  "n_model_views"                        : "param_model_n_model_views",
+                  "n_features"                           : "param_model_n_features",
+                  "n_species"                            : "param_model_n_species",
+                  "p_dropout"                            : "param_model_p_dropout",
+
+                  "bool_argmax"                          : "param_model_bool_argmax",
+                  "bool_layer_norm"                      : "param_model_bool_layer_norm",
+                  "bool_max_add_softmax_layer"           : "param_model_bool_max_add_softmax_layer",
+                  "bool_max_linear_avant_max"            : "param_model_bool_max_linear_avant_max",
+                  "bool_final_sigmoid"                   : "param_model_bool_final_sigmoid",
+                  "bool_attention_feed_forward"          : "param_model_bool_attention_feed_forward",
+
+                  "f_model_resume_in"                    : "param_model_f_model_resume_in",
+                  "output"                               : ["data_model", "param_model_infos"]},
+
+  
+                {"comment"               : "Calculer les predictions .csv"},
+  
+                { "name"                      : "module_include",
+                  "pipeline"                  : "internal_bloc_36_compute_predictions_csv_with_dataloader.json",
+                
+                  "model_infos"                     : "param_model_infos",
+                  "create_augment_specs"            : "param_create_augment_specs",                         
+
+                  "dataset_folder"                  : "param_dataset_folder",
+                  "storage_device"                  : "data_storage_device",
+                  "bool_true_tensors_false_images"  : "param_ds_common_bool_true_tensors_false_images",
+                  "bool_caching_images"             : "param_ds_common_bool_caching_images",
+                  "bool_caching_labels"             : "param_ds_common_bool_caching_labels",
+                  "bool_return_relative_img_names"  : "param_ds_common_bool_return_relative_img_names",
+                  "bool_return_short_img_names"     : "param_ds_common_bool_return_short_img_names",
+                  "bool_one_hot_encoding"           : "param_ds_common_bool_one_hot_encoding",
+                  "bool_one_hot_remove_last_col"    : "param_ds_common_bool_one_hot_remove_last_col",
+
+                  "dataloader_batch_size"           : "param_ds_common_loader_batch_size",
+                  "dataloader_shuffle"              : "param_ds_data_loader_shuffle",
+                  "dataloader_num_workers"          : "param_ds_common_loader_num_workers",
+                  "dataloader_pin_memory"           : "param_ds_common_loader_pin_memory",
+
+                  "model"                           : "data_model",
+                  "use_autocast"                    : "param_use_autocast",
+                  "use_torch_compile"               : "param_use_torch_compile",
+                  "compute_device"                  : "data_compute_device",
+                  "model_liste_noms_communs"        : "param_model_liste_noms_communs",
+                  "f_path_predictions_csv"          : "param_f_path_predictions_csv"},
+
+
+                { "name"                                  : "module_include",
+                "pipeline"                                : "internal_bloc_70_compute_statistics.json",
+
+                "dataset_folder"                          : "param_dataset_folder",
+                "dict_classes_folder_to_name"             : "param_dict_classes_folder_to_name",
+                "f_path_predictions_csv"                  : "param_f_path_predictions_csv",
+                "f_path_annotations_csv"                  : "param_f_path_annotations_csv",
+                "f_path_statistiques_prefixe"             : "param_f_path_statistiques_images_prefixe",
+                "f_path_statistiques_csv"                 : "param_f_path_statistiques_csv",
+                "liste_noms_communs_pour_stats"           : "param_liste_noms_communs_pour_stats",
+                "f_path_seuils_detection"                 : "param_f_path_seuils_detection",
+                "input_seuils_detection"                  : "param_input_seuils_detection",
+                "output_seuils_detection"                 : "param_output_seuils_detection",
+                "liste_statistiques_export"               : "param_liste_statistiques_export",
+                "interp_densite"                          : "param_interp_densite"}
+
+    ]
+}

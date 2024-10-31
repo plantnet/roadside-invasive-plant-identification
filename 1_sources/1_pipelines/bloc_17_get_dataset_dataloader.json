@@ -1,0 +1,40 @@
+{
+    "name": "Bloc de chargement des données",
+
+    "__requires": "",
+    "__provides": "",
+    "output" : "data_dataloader",
+    
+    "modules": [
+
+            { "name"                : "module_create_liste_augmentations_from_model_infos",
+            "model_infos"           : "param_model_infos",
+            "create_augment_specs"  : "param_create_augment_specs",
+            "output"                : "param_liste_augmentations"},
+
+            { "name"                : "module_get_augmentations",
+              "liste_augmentations" : "param_liste_augmentations",
+              "output"              : "param_augmentations"},
+
+            { "name"                : "module_datasets_generic_ArbitraryFolder",
+            "dataset_folder"        : "param_dataset_folder",
+            "augmentations"         : "param_augmentations",
+            "device"                : "data_storage_device",
+            "bool_true_tensors_false_images"    : "param_bool_true_tensors_false_images",
+            "bool_caching_images"               : "param_bool_caching_images",
+            "bool_caching_labels"               : "param_bool_caching_labels",
+            "bool_return_relative_img_names"    : "param_bool_return_relative_img_names",
+            "bool_return_short_img_names"       : "param_bool_return_short_img_names",
+            "output"                : "data_dataset"},
+              
+
+            { "name"                : "module_get_dataloader",
+              "dataset"             : "data_dataset",
+              "batch_size"          : "param_dataloader_batch_size",
+              "shuffle"             : "param_dataloader_shuffle",
+              "num_workers"         : "param_dataloader_num_workers",
+              "pin_memory"          : "param_dataloader_pin_memory",
+              "output"              : "data_dataloader"}
+         ]
+
+}

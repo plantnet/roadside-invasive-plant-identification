@@ -1,0 +1,15 @@
+{
+    "views_geometry_danishroads" : {
+        "resolution_x"     : 4024,
+        "resolution_y"     : 3036,
+        "model_input_size" : 384,
+
+        "n_views" : 926,
+        "scales_n_views_yx_list" : [[1, 2],   [3, 4],   [5, 7],   [7, 10],   [9, 12],    [11, 15],  [13, 18],   [15, 20]],
+        "strides_x" : [124, 211, 190, 183, 196, 190, 186, 191],
+        "strides_y" : [192, 192, 192, 192, 192, 192, 192, 192],
+
+        "scales_list" : [1, 2, 3, 4, 5, 6, 7, 8],
+        "max_scale"   : 8
+    }
+}

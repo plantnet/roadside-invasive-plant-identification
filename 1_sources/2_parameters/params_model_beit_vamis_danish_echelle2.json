@@ -1,0 +1,11 @@
+{
+    "model_name" : "beit_plantnet_early_2023_mod_danish",
+    "model_input_size_xy_vamis" : [768, 1017],
+
+    "__model_liste_noms_communs": ["Solidago", "Cytisus scoparius", "Rosa rugosa", "Lupinus polyphyllus", "Pastinaca sativa", "Reynoutria", "no_species", "Heracleum"],
+    "model_liste_noms_communs": ["Solidago", "Cytisus scoparius", "Rosa rugosa", "Lupinus polyphyllus", "Pastinaca sativa", "Reynoutria", "no_species"],
+
+    "model_f_model_resume_in"              : "",
+
+    "d_models_folder"                     : "$f_models"
+}

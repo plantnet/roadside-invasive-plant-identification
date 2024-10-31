@@ -1,0 +1,57 @@
+{
+    "include_params_quadrats_folders"             : "quadrats_folders.json",
+    "include_params_models_infos"                 : "params_models_infos.json",
+    "include_params_dataset"                      : "params_dataset_images_mads_split.json",
+    "include_params_views_geometry_danishroads"       : "params_views_geometry_DanishRoads.json",
+    "include_params_views_geometry_danishroads_light" : "params_views_geometry_DanishRoads_light.json",
+    "params_for_paths_search"                     : ["quadrats_folders",
+                                                    "views_geometry_danishroads",
+                                                    "views_geometry_danishroads_light",
+                                                    "/"],
+
+    "model_name"             : "beit_plantnet_early_2023_mod_danish",
+    "__model_name"           : "dinov2_vitb14_reg4_pt_in_ft_pc24_onlyclassifier",
+    "__model_name"           : "dinov2_vitb14_reg4_pt_in_ft_pc24_onlyclassifier_then_all",
+
+    "__subdataset_name"           : "mads_split_full",
+    "__subdataset_name"           : "mads_split_train",
+    "__subdataset_name"           : "mads_split_val",
+    "__subdataset_name"           : "mads_split_test",
+    "__subdataset_name"           : "mads_split_multilabel",
+    "subdataset_name"           : "mads_split_test_14",
+
+
+    "batch_size_views"              : 128,
+    "__batch_size_views"              : 256,
+    "__batch_size_views"              : 64,
+    "__batch_size_views"              : 512,
+    "__batch_size_views"              : 1024,
+
+    "views_geometry"              : "$views_geometry_danishroads",
+    "__views_geometry"              : "$views_geometry_danishroads_light",
+    "__views_geometry"              : "dynamic",
+
+
+    "__comment"                        : "Chaque image HD est traitée l'une après l'autre => batch_size=1",
+    "ds_common_loader_batch_size"      : 1,
+    "ds_common_loader_num_workers"     : 1,
+    "ds_common_bool_return_relative_img_names" : true,
+    "ds_common_bool_return_short_img_names"    : false,
+
+    "dataset_folder"              : ["$f_images",        "$danish_subdataset_folders[$subdataset_name]"],
+    "output_deep_features_folder" : ["$f_deep_features", "$danish_subdataset_folders[$subdataset_name]"],
+
+    "d_models_folder"             : "$f_models",
+    
+    "model_input_size_xy_vamis" : null,
+
+    "storage_device_name" : "cpu",
+    "compute_device_name" : "cuda",
+
+    "create_augment_specs" : { "totensor" : true},
+    
+    "__use_autocast"      : false,
+    "use_autocast"      : true,
+    "use_torch_compile" : false,
+    "__use_torch_compile" : true
+}

@@ -1,0 +1,54 @@
+{
+    "include_params_quadrats_folders"     : "quadrats_folders.json",
+    "include_params_quadrats_filenames"   : "quadrats_filenames.json",
+    "include_params_models_infos"         : "params_models_infos.json",
+    
+    "f_path_seuils_detection"                 : ["$f_output_statistiques", "models_choix_seuils_customs.json"],
+
+    "f_path_predictions_csv"             : [ "$f_probas_predictions_csv", "$subdataset_name", "_predictions_", "$tag_experiment", "_", "$tag_sup", ".csv"],
+
+    "f_path_predictions_tileindex_csv"   : [ "$f_probas_predictions_csv", "$subdataset_name", "_predictions_", "$tag_experiment", "_", "$tag_sup", "_tileindex.csv"],
+    
+    "f_path_annotations_csv"             : [ "$f_annotations", "annotations_", "$subdataset_name", ".csv"],
+    "f_path_statistiques_images_prefixe" : [ "$f_output_statistiques", "$subdataset_name", "_stats_", "$tag_experiment", "_", "$tag_sup", "_model_choix_seuils_", "$input_seuils_detection" ],
+    "f_path_statistiques_csv"            : [ "$f_output_statistiques", "$subdataset_name", "_stats_", "$tag_experiment", "_", "$tag_sup", "_model_choix_seuils_", "$input_seuils_detection" , ".csv" ],
+
+    "__liste_noms_communs_pour_stats" : ["Solidago", "Cytisus scoparius", "Rosa rugosa", "Lupinus polyphyllus", "Pastinaca sativa", "Reynoutria", "no_species"],
+    "liste_noms_communs_pour_stats" : ["Solidago", "Cytisus scoparius", "Rosa rugosa", "Lupinus polyphyllus", "Pastinaca sativa", "Reynoutria"],
+    
+    "dict_classes_folder_to_name" : {
+        "1_solidago" : "Solidago",
+        "2_cytisus_scoparius" : "Cytisus scoparius",
+        "3_rosa_rugosa" : "Rosa rugosa",
+        "4_lupinus_polyphyllus" : "Lupinus polyphyllus",
+        "5_pastinaca_sativa" : "Pastinaca sativa",
+        "6_reynoutria" : "Reynoutria",
+        "7_no_species" : "no_species",
+        "dummy_class"  : "dummy_class"},
+
+    "liste_statistiques_export" : ["P", "N", "TP", "FP", "TN", "FN", "correct", "accuracy", "balanced_accuracy", "precision", "recall", "specificite", "FPR", "VPN", "F1", "Gmeans", "AUC", "proba_threshold"],
+
+    "interp_densite" :
+    {
+        "polynom_degres" : 3,
+        "__polynom_degres" : 1,
+        "__polynom_degres" : 3,
+        "use_log" : false,
+        "scale_min_max" :
+        {
+            "__min_x" : -0.3,
+            "__max_x" : 0.3,
+            "__min_y" : 0.001,
+            "__max_y" : 10000
+        },
+        "output_stats_json" : true
+    },
+
+    "use_autocast"      : false,
+    "__use_autocast"      : true,
+    "use_torch_compile" : false,
+    "__use_torch_compile" : true,
+
+    "storage_device_name" : "cpu",
+    "compute_device_name" : "cuda"
+}

@@ -1,0 +1,25 @@
+{
+    "name": "Bloc de calcul: Générer les annotations et les enregistrer au format .csv",
+
+    "requires": "",
+    "provides": "param_f_path_annotations_csv",
+    
+    "modules": [
+
+        { "name"                          : "module_get_annotations_data",
+        "dataset_folder"                  : "param_dataset_folder",
+        "dict_classes_folder_to_name"     : "param_dict_classes_folder_to_name",
+        "output"                          : ["param_dataset_liste_noms_communs", "param_dataset_imgs_names_list", "data_annotations_onehot"] },
+        
+        { "name"                : "module_wrappe_predictions_in_dataframe_with_common_names_and_tensors_list",
+            "aggregated_probas" : "data_annotations_onehot",
+            "tensors_list"      : "param_dataset_imgs_names_list",
+            "liste_noms_communs": "param_dataset_liste_noms_communs",
+            "output"            : "data_df_annotations" },
+
+        { "name"                : "module_enregistre_dataframe_vers_fichier_csv",
+            "f_path"            : "param_f_path_annotations_csv",
+            "df"                : "data_df_annotations"}
+
+        ]
+}

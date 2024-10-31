@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python: Debug Current File",
+            "type": "python",
+            "request": "launch",
+            "__program": "${file}",
+            "program": "/home/vincent/Bureau/Bureau2/2_pipeline_quadrats/1_sources/3_scripts/main_pipeline.py",
+            "cwd": "/home/vincent/Bureau/Bureau2/2_pipeline_quadrats/1_sources/3_scripts/",
+            "args": ["pipeline_10_calcule_deep_features.json",
+                    "params_job100_calcule_deep_features.json",
+                    "job100_calcule_deep_features.log"],
+
+            "console": "integratedTerminal",
+            "stopOnEntry": false,
+            "justMyCode": false
+        },
+    ]
+}

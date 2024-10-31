@@ -1,0 +1,36 @@
+{
+    "model_liste_noms_communs": ["Solidago", "Cytisus scoparius", "Rosa rugosa", "Lupinus polyphyllus", "Pastinaca sativa", "Reynoutria"],
+
+    "model_f_model_weights_in_state_dict"  : "",
+    "model_n_views"                        : 926,
+    "model_n_model_views"                  : 926,
+    "__model_n_model_views"                  : 14,
+    "model_n_features"                     : 768,
+    "model_n_species"                      : 7,
+
+    "model_p_dropout"                      : 0.0,
+    "__model_p_dropout"                    : 0.8,
+    "__model_p_dropout"                    : 0.9,
+    "__model_p_dropout"                    : 0.95,
+
+    "model_aggregation_type"               : "max",
+    "__model_aggregation_type"               : "weighted_sum",
+    "__model_aggregation_type"               : "fully_connected",
+    "__model_aggregation_type"               : "attention",
+
+    "model_bool_argmax"                    : false,
+    "__model_bool_argmax"                    : true,
+
+    "model_bool_layer_norm"                : false,
+    "__model_bool_layer_norm"                : true,
+
+    "model_bool_max_add_softmax_layer"     : false,
+    "model_bool_max_linear_avant_max"      : false,
+
+    "model_bool_final_sigmoid"             : false,
+    "__model_bool_final_sigmoid"             : true,
+
+    "model_bool_attention_feed_forward"    : false,
+    "model_f_model_head_path_in"           : [ "$f_models", "model_beit_danish_head.pth" ],
+    "model_f_model_resume_in"              : ""
+}

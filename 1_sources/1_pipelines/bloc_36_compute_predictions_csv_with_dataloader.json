@@ -1,0 +1,51 @@
+{
+    "name": "Bloc de calcul: Préparer le dataloader, calculer les prédictions et les enregistrer en .csv",
+
+    "requires": "",
+    "provides": "param_f_path_predictions_csv",
+    
+    "modules": [
+
+        { "name"                          : "module_include",
+        "pipeline"                        : "internal_bloc_16_get_dataset_dataloader_imagefolder.json",
+
+        "model_infos"                     : "param_model_infos",
+        "create_augment_specs"            : "param_create_augment_specs",       
+
+        "dataset_folder"                  : "param_dataset_folder",
+        "storage_device"                  : "data_storage_device",
+        "bool_true_tensors_false_images"  : "param_bool_true_tensors_false_images",
+        "bool_caching_images"             : "param_bool_caching_images",
+        "bool_caching_labels"             : "param_bool_caching_labels",
+        "bool_return_relative_img_names"  : "param_bool_return_relative_img_names",
+        "bool_return_short_img_names"     : "param_bool_return_short_img_names",
+        "bool_one_hot_encoding"           : "param_bool_one_hot_encoding",
+        "bool_one_hot_remove_last_col"    : "param_bool_one_hot_remove_last_col",
+
+        "dataloader_batch_size"           : "param_dataloader_batch_size",
+        "dataloader_shuffle"              : "param_dataloader_shuffle",
+        "dataloader_num_workers"          : "param_dataloader_num_workers",
+        "dataloader_pin_memory"           : "param_dataloader_pin_memory",
+        "output"                          : "data_dataloader"},
+
+
+        { "name"                : "module_calc_predictions_and_output_tensor_and_images_names",
+            "model"             : "data_model",
+            "data_loader"       : "data_dataloader",
+            "use_autocast"      : "param_use_autocast",
+            "use_torch_compile" : "param_use_torch_compile",
+            "device"            : "data_compute_device",
+            "output"            : ["data_predictions", "param_imgs_names_list"] },
+        
+        { "name"                : "module_wrappe_predictions_in_dataframe_with_common_names_and_tensors_list",
+            "aggregated_probas" : "data_predictions",
+            "tensors_list"      : "param_imgs_names_list",
+            "liste_noms_communs": "param_model_liste_noms_communs",
+            "output"            : "data_df_predictions" },
+
+        { "name"                : "module_enregistre_dataframe_vers_fichier_csv",
+            "f_path"            : "param_f_path_predictions_csv",
+            "df"                : "data_df_predictions"}
+
+        ]
+}

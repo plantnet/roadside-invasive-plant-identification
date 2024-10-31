@@ -1,0 +1,45 @@
+{
+    "name": "pipeline pour le calcul des stats: Régénérer les annotations csv si nécessaire, puis calculer les stats",
+
+    "requires": "param_f_path_predictions_csv",
+    "provides": "param_f_path_statistiques_csv",
+    
+    "modules": [
+
+                { "name"                  : "module_include",
+                "pipeline"                : "internal_bloc_20_generate_annotations_csv.json",
+                "f_path_annotations_csv"  : "param_f_path_annotations_csv",
+                "dataset_folder"          : "param_dataset_folder",
+                "dict_classes_folder_to_name" : "param_dict_classes_folder_to_name"},
+
+                { "name"                  : "module_charge_fichier_csv_vers_dataframe",
+                  "f_path"                : "param_f_path_predictions_csv",
+                  "output"                : "data_df_predictions"},
+
+                { "name"                  : "module_charge_fichier_csv_vers_dataframe",
+                  "f_path"                : "param_f_path_annotations_csv",
+                  "output"                : "data_df_annotations"},
+
+
+                { "name"                         : "module_calculate_binary_stats",
+                  "input_df_annotations"         : "data_df_annotations",
+                  "input_df_predictions"         : "data_df_predictions",
+                  "images_prefixe"               : "param_f_path_statistiques_prefixe",
+                  "list_names_classes"           : "param_liste_noms_communs_pour_stats",
+                  
+                  "f_path_seuils_detection"      : "param_f_path_seuils_detection",
+                  "input_seuils_detection"       : "param_input_seuils_detection",
+                  "output_seuils_detection"      : "param_output_seuils_detection",
+                  
+                  "list_statistiques_for_export" : "param_liste_statistiques_export",
+                  "interp_densite"               : "param_interp_densite",
+                  "output"                       : "data_df_statistiques"},
+
+
+                { "name"                  : "module_enregistre_dataframe_vers_fichier_csv_excel",
+                  "f_path"                : "param_f_path_statistiques_csv",
+                  "df"                    : "data_df_statistiques"}
+
+        ]
+
+}

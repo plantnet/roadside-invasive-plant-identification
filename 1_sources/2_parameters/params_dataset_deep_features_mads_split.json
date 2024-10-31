@@ -1,0 +1,38 @@
+{
+    "__comment1" : "Paramètres liés aux deep features du Danish road, avec le split de mads",
+
+    "danish_subdataset_folders" : {
+        "mads_split_full"           : [ "DanishRoads/mads_split" ],
+        "mads_split_train"          : [ "DanishRoads/mads_split/", "train" ],
+        "mads_split_val"            : [ "DanishRoads/mads_split/", "val" ],
+        "mads_split_test"           : [ "DanishRoads/mads_split/", "test" ],
+        "mads_split_multilabel"     : [ "DanishRoads/mads_split/", "multilabel" ],
+    
+        "mads_split_val_16"        : [ "DanishRoads/mads_split/", "val_16" ],
+        "mads_split_test_14"        : [ "DanishRoads/mads_split/", "test_14" ],
+        "mads_split_test_100"       : [ "DanishRoads/mads_split/", "test_100" ],
+        "mads_split_test_q70"       : [ "DanishRoads/mads_split/", "test_q70" ],
+
+        "comment"                   : "uniquement sur deep features:",
+        "mads_split_test_stdev_fixe"    : [ "$f_deep_features", "mads_split/", "test_stdev_fixe" ],
+        "mads_split_test_centre_reduit" : [ "$f_deep_features", "mads_split/", "test_centre_reduit" ]        
+    },
+
+    "__dataset_folder"              : ["$f_deep_features", "$danish_subdataset_folders[$subdataset_name]", "/moy_local_tokens"],
+    "dataset_folder"              : ["$f_deep_features", "$danish_subdataset_folders[$subdataset_name]"],
+
+    "ds_data_loader_shuffle" : false,
+
+    "ds_common_loader_batch_size"    : 256,
+    "ds_common_loader_num_workers"   : 3,
+    "ds_common_loader_pin_memory"    : true,
+
+    "ds_common_bool_true_tensors_false_images" : true,
+    "ds_common_bool_caching_images"            : true,
+    "ds_common_bool_caching_labels"            : false,
+    "ds_common_bool_return_relative_img_names" : false,
+    "ds_common_bool_return_short_img_names"    : true,
+    
+    "ds_common_bool_one_hot_encoding"          : false,
+    "ds_common_bool_one_hot_remove_last_col"   : false
+}

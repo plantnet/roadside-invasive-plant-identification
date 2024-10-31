@@ -1,0 +1,12 @@
+{
+    "params_surcharge_pipeline_repetition" : {
+        "run_1"  : {
+            "subdataset_name"         : "mads_split_multilabel",
+            "__subdataset_name"         : "mads_split_test_14",
+            "input_seuils_detection"  : ["$tag_experiment", "_val"],
+            "output_seuils_detection" : "",
+            "use_autocast"      : true,
+            "use_torch_compile" : false
+            }
+    }
+}

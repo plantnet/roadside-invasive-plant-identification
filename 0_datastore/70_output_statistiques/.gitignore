@@ -1,0 +1,5 @@
+# Ignore everything in this directory
+*
+# Except these files
+!.gitignore
+!models_choix_seuils_customs.json

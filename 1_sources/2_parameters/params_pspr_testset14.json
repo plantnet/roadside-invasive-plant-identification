@@ -1,0 +1,9 @@
+{
+    "params_surcharge_pipeline_repetition" : {
+        "run_1"  : {
+            "subdataset_name"         : "mads_split_test_14",
+            "use_autocast"      : true,
+            "use_torch_compile" : false
+            }
+    }
+}

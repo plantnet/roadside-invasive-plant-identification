@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python: Debug Current File",
+            "type": "python",
+            "request": "launch",
+            "__program": "${file}",
+            "program": "/home/vincent/Bureau/Bureau2/2_pipeline_quadrats/1_sources/3_scripts/main_pipeline.py",
+            "cwd": "/home/vincent/Bureau/Bureau2/2_pipeline_quadrats/1_sources/3_scripts/",
+            "args": ["pipeline_17_tiling_evaluate.json",
+                    "params_job105_officiel_evaluate_tiling_finetune.json",
+                    "job105_officiel_evaluate_tiling_finetune.log"],
+
+            "console": "integratedTerminal",
+            "stopOnEntry": false,
+            "justMyCode": false
+        },
+    ]
+}

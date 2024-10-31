@@ -1,0 +1,15 @@
+{
+    "views_geometry_danishroads_light" : {
+        "resolution_x"     : 4024,
+        "resolution_y"     : 3036,
+        "model_input_size" : 384,
+
+        "n_views" : 49,
+        "scales_n_views_yx_list" : [[1, 2],   [3, 4],   [5, 7]],
+        "strides_x" : [124, 211, 190],
+        "strides_y" : [192, 192, 192],
+
+        "scales_list" : [1, 2, 3],
+        "max_scale"   : 3
+    }
+}

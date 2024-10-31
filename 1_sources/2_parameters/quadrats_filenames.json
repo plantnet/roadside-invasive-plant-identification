@@ -1,0 +1,53 @@
+{
+    "quadrats_filenames" : {
+
+        "images_folder"    : [ "$f_images", "$subdataset_name"],
+        
+        "deep_features_folder"    : [ "$f_deep_features", "$subdataset_name"],
+ 
+        "probas_predictions_pth_prefix" : [ "$f_probas_predictions_pth", "$subdataset_name", "_", "$tag_norm", "_"],
+
+        "probas_predictions_pth"  : [ "$probas_predictions_pth_prefix", "probas.pth"],
+
+        "grid_probas_pth"         : [ "$probas_predictions_pth_prefix", "grid_probas.pth"],
+
+
+        "probas_predictions_csv_prefix" : [ "$f_probas_predictions_csv", "$subdataset_name", "_", "$tag_norm", "_", "$tag_suppl", "_",
+             "$aggregate_methode", "_", "$model_choix_vues", "_quantile",  "$aggregate_quantile"],
+
+        "predictions_csv"            : [ "$probas_predictions_csv_prefix", ".csv" ],
+        "aggregated_predictions_csv" : [ "$probas_predictions_csv_prefix", "_aggreged.csv" ],
+
+
+        "aggregated_views_features_pth" : [ "$deep_features_folder", "_aggregated_deep_features_", "$aggregate_methode", "_", "$model_choix_vues", "_quantile",  "$aggregate_quantile"],
+
+        "probas_predictions_aggrege_deep_features_pth"  : [ "$probas_predictions_pth_prefix", "aggrege_deep_features_probas.pth"],
+        "aggregated_views_features_predictions_csv" : [ "$probas_predictions_csv_prefix", "via_aggrege_deep_features_predictions.csv" ],
+
+
+        "annotations_csv"         : [ "$f_annotations", "annotations_" , "$subdataset_name" , ".csv" ],
+
+        "statistiques_csv"        : [ "$f_output_statistiques", "$subdataset_name", "_", "$tag_norm", "_", "$tag_suppl", "_", "$aggregate_methode", "_", "$model_choix_vues", "_quantile", "$aggregate_quantile", "_", "$input_seuils_detection" , ".csv" ],
+
+        "statistiques_images_prefixe"    : [ "$f_output_statistiques", "$subdataset_name", "_", "$tag_norm", "_", "$tag_suppl", "_", "$aggregate_methode", "_", "$model_choix_vues", "_quantile", "$aggregate_quantile", "_", "$input_seuils_detection"],
+
+        "gathered_statistiques_csv" : [ "$f_output_statistiques", "$tag_gathered","_gathered_statistiques.csv"],
+
+
+        "full_path_selected_species_for_normalization" : [ "$f_species_data", "$f_selected_species_for_normalization" ],
+
+        "species_correspondance"             : [ "$f_species_data", "correspondances_nom_commun_especes.json" ],
+        "species"                            : [ "$f_species_data", "species.json" ],
+        "liste_noms_communs"                 : [ "$f_species_data", "liste_noms_communs.md" ],
+
+        "norm_liste_especes_invasion"        : "liste_especes_invasion_et_reynoutria.md",
+        "norm_liste_especes_northern_europe" : "liste_especes_k-northern-europe_et_heracleum_sosnowskyi_et_fallopia_japonica.md",
+        "norm_liste_toutes_especes_pas_norm" : "liste_toutes_especes.md",
+
+
+        "grid_mask"               : [ "$f_deep_features", "$subdataset_name" , "_grid_masks.pth"],
+
+        "heatmap_folder"    : [ "$f_output_statistiques", "heatmaps/"]
+
+    }
+}
