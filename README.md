@@ -16,6 +16,7 @@ Below are instructions to clone the repository, install dependencies, and run an
 $ git clone https://github.com/plantnet/roadside-invasive-plant-identification.git
 
 # Install dependencies (Python ≥ 3.11 required)
+$ cd roadside-invasive-plant-identification
 $ micromamba env create -f environment_pytorch2.yml
 ```
 
@@ -26,17 +27,17 @@ Before running the code, download the following external resources:
 - **Pretrained Models**: Download from [Zenodo Models Link](https://zenodo.org/records/13891416) and place them in `./0_datastore/30_models`.
 - **Images and Deep Features**: Download images from [Zenodo Data Link](https://zenodo.org/records/14013930) and place them in the respective `10_images` and `20_deep_features` folders within `./0_datastore`.
 
-### 3. Run an Example Experiment (XP4 - Tiling without Fine-Tuning)
+### 3. Run an Example Experiment (XP2 - VaMIS with fine-tuning)
 
-After setting up, you can launch Experiment 4 (XP4), focusing on the tiling method without fine-tuning, by activating the environment and executing the command below:
+After setting up, you can launch Experiment 2 (XP2), focusing on the fine-tuned vamis method, by activating the environment and executing the command below:
 
 ```bash
 $ conda activate pytorch2
-$ cd roadside-invasive-plant-identification/1_sources/3_scripts
-$ bash job104_officiel_evaluate_tiling_pas_finetune.sh
+$ cd 1_sources/3_scripts
+$ bash job102_officiel_vamis_evaluate_model_plantnet_finetune.sh
 ```
 
-This will trigger the pipeline, reproducing results for the tiling method with no fine-tuning.
+This will trigger the pipeline, reproducing results for the fine-tuned vamis method.
 
 ## Experiment Setup and Results
 
@@ -58,13 +59,11 @@ Jobs 100 to 107 in the provided Bash scripts correspond to specific tasks:
 
 The dataset includes **14,838 high-resolution images** taken along Danish roads. Images are split into train, validation, and test sets. Each image contains annotations for **six invasive plant taxa** (consolidated as meta-species based on visual similarity).
 
-The images (with reduced quality for Zenodo) can be found here [Zenodo](https://zenodo.org/records/14013930).
-
-Once downloaded, images should be placed in the `./0_datastore/10_images` directory, and deep features in `./0_datastore/20_deep_features`
+The images can be found here [Zenodo](https://zenodo.org/records/14013930).
 
 ### Models
 
-The pre-trained [BEiT](https://arxiv.org/abs/2106.08254) Vision Transformer model forms the backbone for this image analysis. Our paper proposes 2 methods to handle high resolution images with vision transformers: Tiling the image or increasing the model input size (VaMIS for Variable Model Input Size). The model weights can be found on [Zenodo](https://zenodo.org/records/13891416). Once downloaded, the models should be placed in the `./0_datastore/30_models` directory.
+The pre-trained [BEiT](https://arxiv.org/abs/2106.08254) Vision Transformer model forms the backbone for this image analysis. Our paper proposes 2 methods to handle high resolution images with vision transformers: Tiling the image or increasing the model input size (VaMIS for Variable Model Input Size). The model weights can be found on [Zenodo](https://zenodo.org/records/13891416).
 
 ## Pipeline Overview
 
@@ -104,10 +103,11 @@ If you use this code, data, or models, please cite our article:
 
 ```plaintext
 @article{espitalier2024species,
-  title={From species identification to species presence detection in high resolution images: an application to invasive plant species using roadside views},
-  author={Espitalier, Vincent and Goëau, Hervé and Botella, Christophe and others},
+  title={From Species Identification to Species Presence Detection in High Resolution Images - an Application to Invasive Plant Species Using Roadside Views},
+  author={Espitalier, Vincent and Goëau, Hervé and Botella, Christophe and Dyrmann, Mads and Hoye, Toke T. and Bonnet, Pierre and Joly, Alexis},
   journal={Ecological Informatics},
-  year={2024}
+  year={2024},
+  ssrn={https://ssrn.com/abstract=4936442}
 }
 ```
 
